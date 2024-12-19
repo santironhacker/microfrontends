@@ -78,6 +78,18 @@ npx ng generate application mfe-user --routing=true --style=scss --ssr=false
 
 This creates the `mfe-user` application with routing and SCSS support.
 
+#### Update the Scripts in `package.json`:
+
+Like for the shell, add the following entries under the `scripts` section for easier development and production builds:
+
+```json
+"start:mfe-user": "ng serve mfe-user -o --port 4301",
+"build:mfe-user": "ng build mfe-user --prod",
+```
+
+- **`start:mfe-user`**: Launches the mfe-user app on port `4301`.
+- **`build:mfe-user`**: Builds the mfe-user app in production mode.
+
 #### Add some Components to the Micro-Frontend:
 
 ```bash

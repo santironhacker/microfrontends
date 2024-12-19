@@ -6,6 +6,8 @@
     "start": "npm run start:shell",
     "start:shell": "ng serve shell  -o --port 4300",
     "build:shell": "ng build shell --prod",
+    "start:mfe-user": "ng serve mfe-user -o --port 4301",
+    "build:mfe-user": "ng build mfe-user --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
