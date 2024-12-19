@@ -64,3 +64,36 @@ npx ng generate application mfe-user --routing=true --style=scss --ssr=false
 ```
 
 This creates the `mfe-user` application with routing and SCSS support.
+
+#### Add some Components to the Micro-Frontend:
+
+```bash
+npx ng g c details --project=mfe-user
+npx ng g c edit --project=mfe-user
+```
+
+This generates a `details` and `edit` components within the `mfe-user` project.
+
+#### Rename and set the routes of the Micro-Frontend:
+
+```ts
+// user.routes.ts
+
+export const MFE_USER_ROUTES: Routes = [
+  {
+    path: "",
+    pathMatch: "full",
+    redirectTo: "details",
+  },
+  {
+    path: "details",
+    component: DetailsComponent,
+  },
+  {
+    path: "edit",
+    component: EditComponent,
+  },
+];
+```
+
+This routes `mfe-user` module to corresponding `details` and `edit` components.
