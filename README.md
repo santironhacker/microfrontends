@@ -50,3 +50,17 @@ Add the following entries under the `scripts` section for easier development and
 
 - **`start:shell`**: Launches the shell app on port `4300`.
 - **`build:shell`**: Builds the shell app in production mode.
+
+---
+
+### 3. **Add the First Micro-Frontend Module**
+
+This step involves creating a new application to act as the first micro-frontend module (`mfe-user`).
+
+#### Generate the Micro-Frontend Application:
+
+```bash
+npx ng generate application mfe-user --routing=true --style=scss --ssr=false
+```
+
+This creates the `mfe-user` application with routing and SCSS support.
