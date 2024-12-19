@@ -5,21 +5,20 @@ import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 })
 export class AuthLibService {
   private readonly USER_STORAGE_KEY = 'user';
-  private readonly UNDEFINED = 'undefined';
 
-  private userName: WritableSignal<string> = signal(this.checkUserInMemory());
+  private userName: WritableSignal<string | null> = signal(this.checkUserInMemory());
 
-  public get user(): Signal<string> {
+  public get user(): Signal<string | null> {
     return this.userName.asReadonly();
   }
 
   public login(userName: string): void {
     this.userName.set(userName);
-    sessionStorage.setItem(this.USER_STORAGE_KEY, this.userName());
+    sessionStorage.setItem(this.USER_STORAGE_KEY, userName);
   }
 
-  private checkUserInMemory(): string {
+  private checkUserInMemory(): string | null {
     const storedUser: string | null = sessionStorage.getItem(this.USER_STORAGE_KEY);
-    return storedUser ? storedUser : this.UNDEFINED;
+    return storedUser ? storedUser : null;
   }
 }

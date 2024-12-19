@@ -1,0 +1,10 @@
+<section>
+  @if(user()) {
+  <h2>Welcome back {{ user() }}</h2>
+  <p>Check out your pending tasks!</p>
+  } @else {
+  <h2>Do we know each other?</h2>
+  <input [(ngModel)]="formEmail" placeholder="Type your email" type="text" />
+  <button (click)="onHandleClick()">Login user</button>
+  }
+</section>
