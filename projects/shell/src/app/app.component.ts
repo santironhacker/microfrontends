@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { AuthLibService } from 'auth-lib';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  authLibService = inject(AuthLibService);
+
+  user = this.authLibService.user;
 
 }

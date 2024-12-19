@@ -1,5 +1,6 @@
 import { loadRemoteModule } from '@angular-architects/module-federation';
 import { Routes } from '@angular/router';
+import { isAuth } from './app.guards';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 
@@ -19,6 +20,7 @@ export const routes: Routes = [
   },
   {
     path: 'user',
+    canMatch: [isAuth],
     loadChildren: () =>
       loadRemoteModule({
         type: 'module',
@@ -39,6 +41,7 @@ export const routes: Routes = [
   },
   {
     path: 'learn',
+    canMatch: [isAuth],
     loadComponent: () =>
       loadRemoteModule({
         type: 'module',
