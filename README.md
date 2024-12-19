@@ -228,3 +228,69 @@ export const routes: Routes = [
 ```
 
 ---
+
+### 5. **Create `auth-lib` Library**
+
+Generate a new library for authentication to share auth between modules:
+
+```bash
+npx ng generate library auth-lib
+```
+
+If you encounter issues installing `node_modules`, try running the following inside the library folder:
+
+```bash
+npm install --legacy-peer-deps
+```
+
+#### Update `tsconfig.json`
+
+Edit the `tsconfig.json` file at the root of the workspace to include the library's paths and additional compiler options:
+
+```json
+"paths": {
+  "compilerOptions": {
+    "auth-lib": [
+      "projects/auth-lib/src/public-api.ts"
+    ]
+    "baseUrl": "./",
+  },
+}
+```
+
+#### Add Basic Authentication Service
+
+Implement a basic authentication service in `auth-lib.service.ts`:
+
+```typescript
+export class AuthLibService {
+  private readonly USER_STORAGE_KEY = "user";
+  private readonly UNDEFINED = "undefined";
+
+  private userName: WritableSignal<string> = signal(this.checkUserInMemory());
+
+  public get user(): Signal<string> {
+    return this.userName.asReadonly();
+  }
+
+  public login(userName: string): void {
+    this.userName.set(userName);
+    sessionStorage.setItem(this.USER_STORAGE_KEY, this.userName());
+  }
+
+  private checkUserInMemory(): string {
+    const storedUser: string | null = sessionStorage.getItem(this.USER_STORAGE_KEY);
+    return storedUser ? storedUser : this.UNDEFINED;
+  }
+}
+```
+
+The `AuthLibService` can be therefore be accessed in our `shell` and `mfe-user` through dependency injection:
+
+```typescript
+import { AuthLibService } from "auth-lib";
+
+export class AnyComponentModule {
+  authLibService = inject(AuthLibService);
+}
+```
