@@ -127,6 +127,8 @@ This routes `mfe-user` module to corresponding `details` and `edit` components.
 
 ### 4. **Enable Module Federation**
 
+#### Install module federation
+
 Install and use the Angular Architects Module Federation plugin to configure the micro-frontend.
 
 ```bash
@@ -134,6 +136,8 @@ npm install @angular-architects/module-federation@18 -D
 ```
 
 Note the `@18` make sure we match `Angular CLI 18` and avoid uncompatible versions, as specified in the [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) package in the section `Which Version to use?`.
+
+#### Add Module Federation to the Micro-Frontend:
 
 ```bash
 npx ng g @angular-architects/module-federation:init --project=mfe-user --port 4301 --type remote
@@ -143,7 +147,7 @@ npx ng g @angular-architects/module-federation:init --project=mfe-user --port 43
 - **`--port=4301`**: Sets the micro-frontend's development server port.
 - **`--type=remote`**: Configures the app as a remote module.
 
-#### Expose Routes in `mfe-user`
+#### Expose Routes in the Micro-Frontend:
 
 Update the `webpack.config.ts` file for the `mfe-user` project to expose its routes:
 
@@ -152,5 +156,15 @@ exposes: {
   "./routes": "./projects/mfe-user/src/app/mfe-user.routes.ts",
 },
 ```
+
+#### Add Module Federation to the Shell
+
+To enable the shell to act as a host application:
+
+```bash
+npx ng g @angular-architects/module-federation:init --project shell --port 4300 --type host
+```
+
+This will create and update the `webpack.config.js` file in the shell application.
 
 ---
