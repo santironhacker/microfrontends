@@ -1,0 +1,18 @@
+<section class="login">
+  @if(user()) {
+  <h2>You are already part of our crew {{ user() }}</h2>
+  <p>
+    Navigate though the website to find pending tasks! Or learn about new
+    ressources.
+  </p>
+  } @else {
+  <h2>Let's make it official. Become part of our crew today. 🤩</h2>
+  <input [(ngModel)]="formEmail" placeholder="Type your email" type="text" />
+  @if(formErrors()) {
+  <p class="login__form__error">
+    Nobody believes in an email shorter than 3 characters :)
+  </p>
+  }
+  <button (click)="onHandleClick()">Login user</button>
+  }
+</section>

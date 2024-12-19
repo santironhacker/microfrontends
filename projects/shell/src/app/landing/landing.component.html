@@ -1,15 +1,12 @@
-<section class="landing">
+<section>
   @if(user()) {
   <h2>Welcome back {{ user() }}</h2>
   <p>Check out your pending tasks for today!</p>
   } @else {
   <h2>Do we know each other?</h2>
-  <input [(ngModel)]="formEmail" placeholder="Type your email" type="text" />
-  @if(formErrors()) {
-  <p class="landing__form__error">
-    Nobody believes in an email shorter than 3 characters :)
+  <p>
+    Don't be shy. Let us have the opportunity to meet you by
+    <a routerLink="login">login</a> in.
   </p>
-  }
-  <button (click)="onHandleClick()">Login user</button>
   }
 </section>
