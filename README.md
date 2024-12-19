@@ -51,6 +51,19 @@ Add the following entries under the `scripts` section for easier development and
 - **`start:shell`**: Launches the shell app on port `4300`.
 - **`build:shell`**: Builds the shell app in production mode.
 
+#### Add some basic navigation in the `app.component.html`:
+
+```html
+<ul>
+  <li><a routerLink="/">Landing</a></li>
+  <li><a routerLink="/user">User</a></li>
+</ul>
+
+<router-outlet />
+```
+
+This will allow us to navigate to different routes once the routing is configured.
+
 ---
 
 ### 3. **Add the First Micro-Frontend Module**
