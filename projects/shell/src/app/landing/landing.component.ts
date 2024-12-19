@@ -14,8 +14,15 @@ export class LandingComponent {
 
   user = this.authLibService.user;
   formEmail = signal('');
+  formErrors = signal(false);
 
   onHandleClick() {
-    this.authLibService.login(this.formEmail());
+    if (this.formEmail().trim().length < 3) {
+      this.formErrors.set(true);
+    } else {
+      this.formErrors.set(false);
+      this.authLibService.login(this.formEmail());
+    }
+
   }
 }
