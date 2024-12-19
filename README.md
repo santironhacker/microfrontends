@@ -4,6 +4,13 @@ This document provides a clear step-by-step guide to setting up a modular Angula
 
 #### **Run the code** 🚀
 
+After cloning the repo, navigate to `microfrontends` workspace and install the `node_modules`:
+
+```bash
+cd microfrontends
+npm install
+```
+
 Run the following commands in two different terminals to at the root of your workspace to run the `shell` and `mfe-user`:
 
 ```bash
@@ -294,3 +301,31 @@ export class AnyComponentModule {
   authLibService = inject(AuthLibService);
 }
 ```
+
+## **Summary of Project Structure**
+
+After completing the above steps, your Angular workspace will have the following structure:
+
+```
+microfrontends/
+├── projects/
+│   ├── shell/        # Main shell application
+│   └── mfe-user/     # First micro-frontend module
+│   └── auth-lib/     # Lib shared as an npm package
+└── package.json      # Scripts for managing the workspace
+└── angular.json      # Details of workspace and projects config
+```
+
+- **`shell`**: Hosts the micro-frontends and manages shared functionality like navigation.
+- **`mfe-user`**: Contains a `details` and `edit` component and serves as a remote module for the shell.
+- **`auth-lib`**: Contains a `authLib` service that stores and manages the active connected user through the whole app.
+
+---
+
+## **Next Steps**
+
+1. Configure and switch shared dependencies and lazy loading for micro-frontends if you want to move to static microfrontends.
+2. Test the shell and micro-frontends in isolation and integration.
+3. Add additional micro-frontend modules as needed using similar steps.
+
+For further details on Angular Module Federation, consult the [Angular Architects Module Federation documentation](https://www.npmjs.com/package/@angular-architects/module-federation).
