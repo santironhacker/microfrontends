@@ -1,27 +1,52 @@
-# Microfrontends
+# MicroFrontends Project Scaffolding Guide
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+This document provides a clear step-by-step guide to setting up a modular Angular application using multiple applications (modules) with module federation. The goal is to create a scalable, maintainable architecture that includes a shell app and micro-frontend modules.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## **Project Setup Steps**
 
-## Code scaffolding
+### 1. **Initialize the Workspace**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The first step is to create a new Angular workspace without an initial application.
 
-## Build
+```bash
+npx @angular/cli@18 new microfrontends --no-create-application
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+This command sets up a new Angular workspace named `microfrontends` without creating a default application.
 
-## Running unit tests
+For more details, refer to the [official Angular CLI `ng new` documentation](https://angular.io/cli/new).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Note we use version 18 of angular/cli as by the time this project is created the latest compatible version of [@angular-architects/module-federation](https://www.npmjs.com/package/@angular-architects/module-federation) is `v18.0.6`.
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 2. **Add the Shell Application**
 
-## Further help
+The shell application serves as the main container for hosting micro-frontends (modules).
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+#### Generate the Shell Application:
+
+```bash
+npx ng generate application shell --routing=true --style=scss --ssr=false
+```
+
+This creates an application named `shell` with:
+
+- Routing enabled (`--routing=true`)
+- SCSS as the stylesheet format (`--style=scss`)
+- Server-side rendering disabled (`--ssr=false`)
+
+#### Update the Scripts in `package.json`:
+
+Add the following entries under the `scripts` section for easier development and production builds:
+
+```json
+"start": "npm run start:shell",
+"start:shell": "ng serve shell -o --port 4300",
+"build:shell": "ng build shell --prod"
+```
+
+- **`start:shell`**: Launches the shell app on port `4300`.
+- **`build:shell`**: Builds the shell app in production mode.
