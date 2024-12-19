@@ -123,6 +123,8 @@ export const MFE_USER_ROUTES: Routes = [
 
 This routes `mfe-user` module to corresponding `details` and `edit` components.
 
+---
+
 ### 4. **Enable Module Federation**
 
 Install and use the Angular Architects Module Federation plugin to configure the micro-frontend.
@@ -140,5 +142,15 @@ npx ng g @angular-architects/module-federation:init --project=mfe-user --port 43
 - **`--project=mfe-user`**: Specifies the micro-frontend project.
 - **`--port=4301`**: Sets the micro-frontend's development server port.
 - **`--type=remote`**: Configures the app as a remote module.
+
+#### Expose Routes in `mfe-user`
+
+Update the `webpack.config.ts` file for the `mfe-user` project to expose its routes:
+
+```javascript
+exposes: {
+  "./routes": "./projects/mfe-user/src/app/mfe-user.routes.ts",
+},
+```
 
 ---
