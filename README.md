@@ -329,3 +329,5 @@ microfrontends/
 3. Add additional micro-frontend modules as needed using similar steps.
 
 For further details on Angular Module Federation, consult the [Angular Architects Module Federation documentation](https://www.npmjs.com/package/@angular-architects/module-federation).
+
+![alt text](app_screenshot.png)
