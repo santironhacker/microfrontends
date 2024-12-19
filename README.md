@@ -167,4 +167,14 @@ npx ng g @angular-architects/module-federation:init --project shell --port 4300 
 
 This will create and update the `webpack.config.js` file in the shell application.
 
+#### Add Typings for Micro Frontends
+
+Since static federation is being used, add typings for the configured paths (ECMAScript modules) that reference Micro Frontends:
+
+```typescript
+// projects/shell/src/declarations.d.ts
+
+declare module "mfe-user/*";
+```
+
 ---
