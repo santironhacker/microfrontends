@@ -8,9 +8,9 @@
     "build:shell": "ng build shell --prod",
     "start:mfe-user": "ng serve mfe-user -o --port 4301",
     "build:mfe-user": "ng build mfe-user --prod",
-    "start:resources": "ng serve resources -o --port 4302",
-    "build:resources": "ng build resources --prod",
-    "start:all": "concurrently \"npm run start:shell\" \"npm run start:mfe-user\" \"npm run start:resources\" ",
+    "start:mfe-resources": "ng serve mfe-resources -o --port 4302",
+    "build:mfe-resources": "ng build mfe-resources --prod",
+    "start:all": "concurrently \"npm run start:shell\" \"npm run start:mfe-user\" \"npm run start:mfe-resources\" ",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"

@@ -28,6 +28,26 @@ export const routes: Routes = [
         .then(m => m.MFE_USER_ROUTES)
   },
   {
+    path: 'about',
+    loadComponent: () =>
+      loadRemoteModule({
+        type: 'module',
+        remoteEntry: 'http://localhost:4302/remoteEntry.js',
+        exposedModule: './About'
+      })
+        .then(m => m.AboutComponent)
+  },
+  {
+    path: 'learn',
+    loadComponent: () =>
+      loadRemoteModule({
+        type: 'module',
+        remoteEntry: 'http://localhost:4302/remoteEntry.js',
+        exposedModule: './Learn'
+      })
+        .then(m => m.LearnComponent)
+  },
+  {
     path: '**',
     redirectTo: 'landing',
   },
