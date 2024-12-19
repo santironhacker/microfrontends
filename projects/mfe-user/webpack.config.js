@@ -7,7 +7,7 @@ module.exports = withModuleFederationPlugin({
   name: "mfe-user",
 
   exposes: {
-    "./routes": "./projects/mfe-user/src/app/mfe-user.routes.ts",
+    "./routes": "./projects/mfe-user/src/app/user.routes.ts",
   },
 
   shared: {

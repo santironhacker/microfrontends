@@ -62,7 +62,7 @@ Add the following entries under the `scripts` section for easier development and
 <router-outlet />
 ```
 
-This will allow us to navigate to different routes once the routing is configured.
+This will allow us to navigate to different routes once the routing is configured. Add styles as desired.
 
 ---
 
@@ -167,6 +167,19 @@ npx ng g @angular-architects/module-federation:init --project shell --port 4300 
 
 This will create and update the `webpack.config.js` file in the shell application.
 
+Since we want to work with dynamic loaded modules, remove the automatically added:
+
+```js
+// projects/shell/webpack.config.js
+
+module.exports = withModuleFederationPlugin({
+  // Remotes can be removed
+  // remotes: {
+  //   "mfeUser": "http://localhost:4301/remoteEntry.js",
+  // },
+});
+```
+
 #### Add Typings for Micro Frontends
 
 Since static federation is being used, add typings for the configured paths (ECMAScript modules) that reference Micro Frontends:
@@ -175,6 +188,28 @@ Since static federation is being used, add typings for the configured paths (ECM
 // projects/shell/src/declarations.d.ts
 
 declare module "mfe-user/*";
+```
+
+#### Configure Lazy Loading in the Shell
+
+Add a lazy route in the shell application to load the remote module's routes:
+
+```typescript
+// projects/shell/src/app/app.routes.ts
+
+import { loadRemoteModule } from "@angular-architects/module-federation";
+
+export const routes: Routes = [
+  {
+    path: "user",
+    loadChildren: () =>
+      loadRemoteModule({
+        type: "module",
+        remoteEntry: "http://localhost:4301/remoteEntry.js",
+        exposedModule: "./routes",
+      }).then((m) => m.MFE_USER_ROUTES),
+  },
+];
 ```
 
 ---
