@@ -2,6 +2,21 @@
 
 This document provides a clear step-by-step guide to setting up a modular Angular application using multiple applications (modules) with module federation. The goal is to create a scalable, maintainable architecture that includes a shell app and micro-frontend modules.
 
+#### **Run the code** 🚀
+
+Run the following commands in two different terminals to at the root of your workspace to run the `shell` and `mfe-user`:
+
+```bash
+npm run start:shell
+npm run start:mfe-user
+```
+
+Or alternatively, use the following command to launch both concurrently:
+
+```bash
+npm run start:all
+```
+
 ---
 
 ## **Project Setup Steps**
@@ -153,7 +168,7 @@ Update the `webpack.config.ts` file for the `mfe-user` project to expose its rou
 
 ```javascript
 exposes: {
-  "./routes": "./projects/mfe-user/src/app/mfe-user.routes.ts",
+  "./routes": "./projects/mfe-user/src/app/user.routes.ts",
 },
 ```
 

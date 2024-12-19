@@ -8,6 +8,7 @@
     "build:shell": "ng build shell --prod",
     "start:mfe-user": "ng serve mfe-user -o --port 4301",
     "build:mfe-user": "ng build mfe-user --prod",
+    "start:all": "concurrently \"npm run start:shell\" \"npm run start:mfe-user\" ",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"
@@ -22,6 +23,7 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "concurrently": "^9.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
