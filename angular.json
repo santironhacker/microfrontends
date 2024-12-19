@@ -20,9 +20,7 @@
             "outputPath": "dist/shell",
             "index": "projects/shell/src/index.html",
             "browser": "projects/shell/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/shell/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -31,9 +29,7 @@
                 "input": "projects/shell/public"
               }
             ],
-            "styles": [
-              "projects/shell/src/styles.scss"
-            ],
+            "styles": ["projects/shell/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -78,10 +74,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/shell/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -90,9 +83,7 @@
                 "input": "projects/shell/public"
               }
             ],
-            "styles": [
-              "projects/shell/src/styles.scss"
-            ],
+            "styles": ["projects/shell/src/styles.scss"],
             "scripts": []
           }
         }
@@ -110,26 +101,25 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/mfe-user",
             "index": "projects/mfe-user/src/index.html",
-            "browser": "projects/mfe-user/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/mfe-user/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/mfe-user/public"
+                "input": "projects/mfe-user/public",
+                "output": "."
               }
             ],
-            "styles": [
-              "projects/mfe-user/src/styles.scss"
-            ],
-            "scripts": []
+            "styles": ["projects/mfe-user/src/styles.scss"],
+            "scripts": [],
+            "main": "projects/mfe-user/src/main.ts",
+            "extraWebpackConfig": "projects/mfe-user/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -145,7 +135,8 @@
                   "maximumError": "4kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "projects/mfe-user/webpack.prod.config.js"
             },
             "development": {
               "optimization": false,
@@ -156,16 +147,22 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "mfe-user:build:production"
+              "buildTarget": "mfe-user:build:production",
+              "extraWebpackConfig": "projects/mfe-user/webpack.prod.config.js"
             },
             "development": {
               "buildTarget": "mfe-user:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4301,
+            "publicHost": "http://localhost:4301",
+            "extraWebpackConfig": "projects/mfe-user/webpack.config.js"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
@@ -173,10 +170,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/mfe-user/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -185,9 +179,7 @@
                 "input": "projects/mfe-user/public"
               }
             ],
-            "styles": [
-              "projects/mfe-user/src/styles.scss"
-            ],
+            "styles": ["projects/mfe-user/src/styles.scss"],
             "scripts": []
           }
         }
